@@ -18,7 +18,9 @@ class TestService(
 ) : InitializingBean {
 
     fun getMember() {
-        em.createQuery("select m from Member m", Member::class.java)
+        em.createQuery(
+            "select m from Member m join fetch m.team t"
+            , Member::class.java)
             .resultStream
             .forEach {
                 println("member : ${it.name}")
