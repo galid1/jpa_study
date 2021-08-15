@@ -14,7 +14,6 @@ import javax.persistence.EntityManager
 class TestService(
     private val memberRepository: MemberRepository,
     private val teamRepository: TeamRepository,
-    private val em: EntityManager
 ) : InitializingBean {
     var member1Id = 0L
     var member2Id = 0L
@@ -37,13 +36,5 @@ class TestService(
                 println("member : ${it.name}")
                 println("team : ${it.team.name}")
             }
-    }
-
-    fun getMemberWithTeamByEntityManger() {
-        val foundMember1 = em.find(Member::class.java, member1Id)
-
-        println("member : ${foundMember1.name}")
-        println("team : ${foundMember1.team.name}")
-
     }
 }

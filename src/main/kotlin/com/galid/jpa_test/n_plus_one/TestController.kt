@@ -9,11 +9,6 @@ class TestController(
 ) {
     @GetMapping
     fun test() {
-        testService.getMemberWithTeamByEntityManger()
-    }
-
-    @GetMapping("/2")
-    fun test2() {
         testService.getMemberWithTeamByRepository()
     }
 }
