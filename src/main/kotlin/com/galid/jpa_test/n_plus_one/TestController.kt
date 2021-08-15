@@ -9,6 +9,6 @@ class TestController(
 ) {
     @GetMapping
     fun test() {
-        testService.getMemberWithTeamByRepository()
+        testService.getMember()
     }
 }

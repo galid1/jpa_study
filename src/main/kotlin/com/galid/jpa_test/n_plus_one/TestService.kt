@@ -14,7 +14,17 @@ import javax.persistence.EntityManager
 class TestService(
     private val memberRepository: MemberRepository,
     private val teamRepository: TeamRepository,
+    private val em: EntityManager
 ) : InitializingBean {
+
+    fun getMember() {
+        em.createQuery("select m from Member m", Member::class.java)
+            .resultStream
+            .forEach {
+                println("member : ${it.name}")
+            }
+    }
+
     var member1Id = 0L
     var member2Id = 0L
 
@@ -27,14 +37,5 @@ class TestService(
         member1Id = memberRepository.save(member1).id!!
         val member2 = Member(name = "m2", team = team2)
         member2Id = memberRepository.save(member2).id!!
-    }
-
-    fun getMemberWithTeamByRepository() {
-        memberRepository.findById(member1Id)
-            .get()
-            .let {
-                println("member : ${it.name}")
-                println("team : ${it.team.name}")
-            }
     }
 }
