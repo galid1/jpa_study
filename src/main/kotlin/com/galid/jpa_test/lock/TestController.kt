@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController
 class TestController(
     private val testService: TestService
 ) {
-    @PostMapping("/")
-    fun test() {
-        testService.test()
+    @PostMapping("/lock")
+    fun lockTest() {
+        testService.lockTest()
     }
 }

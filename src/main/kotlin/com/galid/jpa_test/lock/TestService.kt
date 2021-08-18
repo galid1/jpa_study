@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
 import javax.persistence.EntityManager
+import javax.persistence.LockModeType
 import kotlin.random.Random.Default.nextInt
 
 @Service
@@ -19,11 +20,10 @@ class TestService(
 ): InitializingBean {
     var userId: Long? = null
 
-    fun test() {
+    fun lockTest() {
         val newCard = Card(serialNum = Random().nextInt())
 
-        val foundUser = userRepository.findById(userId!!)
-            .get()
+        val foundUser = em.find(User::class.java, userId, LockModeType.PESSIMISTIC_WRITE)
 
         foundUser.addCard(newCard)
         userRepository.save(foundUser)
