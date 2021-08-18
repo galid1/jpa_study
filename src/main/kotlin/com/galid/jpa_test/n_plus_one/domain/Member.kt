@@ -8,7 +8,7 @@ class Member(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     val name: String,
-    @ManyToOne(fetch = FetchType.EAGER)
-    val team: Team
+    @ManyToOne(fetch = FetchType.LAZY)
+    var team: Team? = null
 ) {
 }

@@ -8,5 +8,7 @@ class Team(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     val name: String,
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
+    val members: List<Member> = ArrayList()
 ) {
 }

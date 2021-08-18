@@ -9,6 +9,11 @@ class TestController(
 ) {
     @GetMapping
     fun test() {
-        testService.getMember()
+        testService.getTeamWithMember()
+    }
+
+    @GetMapping("/t")
+    fun ttt() {
+        testService.lockTest()
     }
 }
